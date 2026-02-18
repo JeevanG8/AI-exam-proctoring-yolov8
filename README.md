@@ -35,12 +35,7 @@ COCO Dataset Classes
 Yolov8.py        # Main proctoring system script
 README.md        # Project documentation
 
-⚙️ Installation
-1️⃣ Clone the Repository
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-
-2️⃣ Install Dependencies
+Install Dependencies
 pip install ultralytics opencv-python
 
 ▶️ Usage
