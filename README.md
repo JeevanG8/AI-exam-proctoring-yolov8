@@ -1,98 +1,91 @@
-AI Interview Proctoring System using YOLOv8
+🎯 AI Interview Proctoring System (YOLOv8 Based)
 📌 Overview
 
-This project is a real-time AI-based interview proctoring system built using YOLOv8 and OpenCV.
-It monitors candidates during online interviews/exams through a webcam and detects suspicious activities such as:
+This project is a real-time AI-powered interview monitoring system that detects suspicious activities during online interviews using computer vision.
 
-Multiple people in frame
+It uses YOLOv8 object detection and pose estimation to track candidate behavior and flag potential malpractice such as:
 
-Mobile phone usage
-
-Candidate leaving the frame
-
-The system calculates a session risk score based on violations detected over time.
-
+📱 Mobile phone usage
+👥 Multiple persons in frame
+👀 Excessive head movement
+🚫 Candidate absence
 🚀 Features
-
-✅ Real-time object detection using YOLOv8 Nano
-✅ Detects persons and cell phones
-✅ Flags violations instantly
-✅ Displays warnings on screen
-✅ Calculates cumulative risk score
-✅ Lightweight and fast (uses YOLOv8n)
-
+🔍 1. Head Movement Detection
+Uses pose estimation to track nose and shoulder alignment
+Detects head turning (LEFT / RIGHT / CENTER)
+Flags excessive movement after threshold limit
+📱 2. Mobile Phone Detection
+Detects phones using YOLOv8 object detection
+Counts repeated detections with cooldown logic
+Terminates session after multiple violations
+👥 3. Multiple Person Detection
+Detects number of people in frame
+Ends session if more than one person is found
+⏳ 4. Candidate Absence Detection
+Tracks if no person is visible
+Terminates session if absent for more than 10 seconds
+⚠️ 5. Risk Scoring System
+Assigns risk score based on:
+Phone detection
+Absence
+Displays live risk score on screen
 🛠️ Technologies Used
-
-Python
-
+Python 🐍
 OpenCV
-
 YOLOv8 (Ultralytics)
+NumPy
+📦 Installation
+1. Clone the repository
+git clone https://github.com/your-username/ai-proctoring-system.git
+cd ai-proctoring-system
+2. Install dependencies
+pip install opencv-python ultralytics numpy
+3. Download YOLO Models
 
-COCO Dataset Classes
+The system uses:
 
-📂 Project Structure
-Yolov8.py        # Main proctoring system script
-README.md        # Project documentation
+yolov8n.pt
+yolov8n-pose.pt
 
-Install Dependencies
-pip install ultralytics opencv-python
+They will auto-download when first run (via Ultralytics).
 
 ▶️ Usage
 
 Run the script:
 
-python Yolov8.py
+python NewTask.py
 
+Press 'q' to exit.
 
-Press Q to exit the application.
+🖥️ Output Display
 
-🧠 How It Works
+The system shows:
 
-The system uses YOLOv8 object detection to analyze each video frame:
+Head Turn Count
+Number of Persons
+Phone Detection Events
+Risk Score
+🚨 Termination Conditions
 
-Detection Rules
-Rule	Condition	Risk Score
-Multiple People	More than one person detected	+2
-Phone Detected	Cell phone detected	+3
-No Candidate	No person detected	+1
+The session will automatically stop if:
 
-Risk score accumulates gradually during the session.
-
-🎥 Output
-
-The application window shows:
-
-Bounding boxes around detected objects
-
-Warning messages
-
-Person count
-
-Session risk score
-
-📌 Model Information
-
-Model: YOLOv8 Nano (yolov8n.pt)
-
-Automatically downloads on first run
-
-Uses COCO class IDs:
-
-0 → Person
-
-67 → Cell Phone
-
+Head turns exceed limit
+Phone detected more than 3 times
+Multiple persons detected
+Candidate absent for 10 seconds
+📂 Project Structure
+├── NewTask.py
+├── README.md
 🔮 Future Improvements
-
 Face recognition for candidate verification
+Audio-based cheating detection
+Eye gaze tracking
+Web-based dashboard for monitoring
+Logging & report generation
+👨‍💻 Author
 
-Logging violations to a file
-
-Sound alerts
-
-Web dashboard integration
+Jeevan Gouda
 
 📜 License
 
-This project is open-source and available under the MIT License.
+This project is for educational and research purposes
